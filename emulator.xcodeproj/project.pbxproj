@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		B32898D527D9AE7A00E19B59 /* emulator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = emulator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32898D827D9AE7A00E19B59 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B3DECFE327E2C38800706CB9 /* opcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opcode.h; path = ../../opcode.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +58,7 @@
 		B32898D727D9AE7A00E19B59 /* emulator */ = {
 			isa = PBXGroup;
 			children = (
+				B3DECFE327E2C38800706CB9 /* opcode.h */,
 				B32898D827D9AE7A00E19B59 /* main.cpp */,
 			);
 			path = emulator;
@@ -89,7 +91,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					B32898D427D9AE7A00E19B59 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -240,6 +242,7 @@
 		B32898DD27D9AE7A00E19B59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q59J67R6R5;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -250,6 +253,7 @@
 		B32898DE27D9AE7A00E19B59 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q59J67R6R5;
 				ENABLE_HARDENED_RUNTIME = YES;
