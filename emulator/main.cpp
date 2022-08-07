@@ -98,8 +98,8 @@ namespace
         cpu.C = 0x00;
         cpu.D = 0x00;
         cpu.F = 0x00;
-		cpu.IP = 0xFFFE;
-		cpu.IP = fetch16(cpu);
+        cpu.IP = 0x8000;
+        
 	}
 	
     std::uint8_t OnClock(Processor& cpu) noexcept
@@ -334,6 +334,8 @@ namespace
 
 int main(int argc, const char** argv)
 {
+    std::cout << DEREF_CD_C << std::endl;
+    
     assert(argc > 1);
     const auto size = std::filesystem::file_size(argv[1]);
     auto file = std::ifstream(argv[1], std::ios::in | std::ios::binary);
