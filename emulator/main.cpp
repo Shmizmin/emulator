@@ -267,8 +267,8 @@ namespace
             INSN(STB_MEM_B) cpu.memory[fetch16(cpu)] = cpu.B; break;
             INSN(STB_MEM_C) cpu.memory[fetch16(cpu)] = cpu.C; break;
             INSN(STB_MEM_D) cpu.memory[fetch16(cpu)] = cpu.D; break;
-
-                 
+            INSN(STB_MEM_IMM) cpu.memory[fetch16(cpu)] = fetch8(cpu); break;
+                
             INSN(MVB_A_B) cpu.A = cpu.B; break;
             INSN(MVB_A_C) cpu.A = cpu.C; break;
             INSN(MVB_A_D) cpu.A = cpu.D; break;
