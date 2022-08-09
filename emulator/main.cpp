@@ -33,7 +33,7 @@ struct Processor
         static_assert(sizeof(decltype(Zero)) == sizeof(std::uint8_t));
     };
     
-    std::uint16_t SP{ 0xDFFF }, IP{ 0xFFFE };
+    std::uint16_t SP{ 0x7FFF }, IP{ 0x8000 };
     
     std::uint8_t insn;
     
@@ -98,6 +98,7 @@ namespace
         cpu.C = 0x00;
         cpu.D = 0x00;
         cpu.F = 0x00;
+        cpu.SP = 0x7FFF;
         cpu.IP = 0x8000;
         
 	}
