@@ -329,7 +329,7 @@ int main(int argc, const char** argv)
     
     if (argc != 2)
     {
-        std::fprintf(stderr, "[Error] Expected 2 command line arguments but got %i\nExiting...\n", argc);
+        std::fprintf(stderr, "[Error] Usage: emulator (filepath)\n");
         return EXIT_FAILURE;
     }
    
