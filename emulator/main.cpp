@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 
+#include <cstdio>
 #include <cstdint>
 #include <cstdlib>
 #include <cassert>
@@ -38,14 +39,6 @@ struct Processor
     std::uint8_t insn;
     
     std::array<std::uint8_t, std::numeric_limits<std::uint16_t>::max() + 1> memory;
-    
-    enum
-    {
-        FetchData,
-        FetchInstruction,
-    } state;
-    
-    
 };
 
 namespace
@@ -111,9 +104,8 @@ namespace
         auto Dcopy = cpu.D;
                 
 #define CheckGreater(r) if (cpu.r & 0b10000000) { cpu.Greater = 0; } else { cpu.Greater = 1; }
-#define CheckZero(r)   if (cpu.r == 0)      { cpu.Zero = 1;}   else { cpu.Zero = 0; }
-#define CheckBorrow(r) if (cpu.r > r##copy) { cpu.Carry = 1; } else { cpu.Carry = 0; }
-#define CheckCarry(r)  if (cpu.r < r##copy) { cpu.Carry = 1; } else { cpu.Carry = 0; }
+#define CheckZero(r)    if (cpu.r == 0)      { cpu.Zero = 1;}   else { cpu.Zero = 0; }
+#define CheckCarry(r)   if (cpu.r < r##copy) { cpu.Carry = 1; } else { cpu.Carry = 0; }
 #define INSN(x) case x: if constexpr (is_debug) std::puts(#x);
         
 #define CheckAll(x) CheckZero(x); CheckCarry(x); CheckGreater(x);
@@ -323,7 +315,6 @@ namespace
         
 #undef CheckZero
 #undef CheckCarry
-#undef CheckBorrow
 #undef CheckGreater
 #undef CheckAll
 #undef INSN
@@ -335,31 +326,45 @@ namespace
 
 int main(int argc, const char** argv)
 {
-    std::cout << DEREF_CD_C << std::endl;
     
-    assert(argc > 1);
-    const auto size = std::filesystem::file_size(argv[1]);
-    auto file = std::ifstream(argv[1], std::ios::in | std::ios::binary);
-    assert(file.good());
+    if (argc != 2)
+    {
+        std::fprintf(stderr, "[Error] Expected 2 command line arguments but got %i\nExiting...\n", argc);
+        return EXIT_FAILURE;
+    }
+   
+    const auto path = argv[1];
+    const auto size = std::filesystem::file_size(path);
+    auto file = std::ifstream(path, std::ios::in | std::ios::binary);
+    
+    if (!file.good())
+    {
+        std::fprintf(stderr, "[Error] Could not open file %s for reading\nExiting...\n", path);
+        return EXIT_FAILURE;
+    }
     
     std::vector<std::uint8_t> buffer(size, '\0');
-    file.read((char*)buffer.data(), size);
+    file.read(reinterpret_cast<char*>(buffer.data()), size);
     
-    Processor processor{0};
+    Processor processor{ 0 };
 	reset(processor);
 	
 	std::copy(buffer.begin(), buffer.end(), processor.memory.begin());
     
+#define u(x) static_cast<unsigned>(x)
+    
     while (OnClock(processor))
     {
-        std::cout << "A: "  << std::to_string(processor.A)  << '\n';
-        std::cout << "B: "  << std::to_string(processor.B)  << '\n';
-        std::cout << "C: "  << std::to_string(processor.C)  << '\n';
-        std::cout << "D: "  << std::to_string(processor.D)  << '\n';
-        std::cout << "F: "  << std::to_string(processor.F)  << '\n';
-        std::cout << "IP: " << std::to_string(processor.IP) << '\n';
+        std::printf("A: %u\nB: %u\nC: %u\nD: %u\nF: %u\nSP: %u\nIP: %u\n",
+            u(processor.A),
+            u(processor.B),
+            u(processor.C),
+            u(processor.D),
+            u(processor.F),
+            u(processor.SP),
+            u(processor.IP));
         
-        std::cin.get();
+        std::getchar();
     }
     
     
