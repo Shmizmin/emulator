@@ -352,7 +352,6 @@ int main(int argc, const char** argv)
 	std::copy(buffer.begin(), buffer.end(), processor.memory.begin());
     
 #define u(x) static_cast<unsigned>(x)
-    
     while (OnClock(processor))
     {
         std::printf("A: %u\nB: %u\nC: %u\nD: %u\nF: %u\nSP: %u\nIP: %u\n",
@@ -366,6 +365,7 @@ int main(int argc, const char** argv)
         
         std::getchar();
     }
+#undef u
     
     
     return EXIT_SUCCESS;
