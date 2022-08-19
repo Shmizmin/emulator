@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B32898D927D9AE7A00E19B59 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B32898D827D9AE7A00E19B59 /* main.cpp */; };
+		B32898D927D9AE7A00E19B59 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B32898D827D9AE7A00E19B59 /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		B32898D527D9AE7A00E19B59 /* emulator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = emulator; sourceTree = BUILT_PRODUCTS_DIR; };
-		B32898D827D9AE7A00E19B59 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B32898D827D9AE7A00E19B59 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		B3DECFE327E2C38800706CB9 /* opcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opcode.h; path = ../../opcode.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				B3DECFE327E2C38800706CB9 /* opcode.h */,
-				B32898D827D9AE7A00E19B59 /* main.cpp */,
+				B32898D827D9AE7A00E19B59 /* main.c */,
 			);
 			path = emulator;
 			sourceTree = "<group>";
@@ -121,7 +121,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B32898D927D9AE7A00E19B59 /* main.cpp in Sources */,
+				B32898D927D9AE7A00E19B59 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
