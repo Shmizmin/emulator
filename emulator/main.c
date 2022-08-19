@@ -26,8 +26,8 @@ typedef struct
         
         struct
         {
-            uint8_t    Zero : 1,
-                      Carry : 1,
+            uint8_t   Carry : 1,
+                       Zero : 1,
                     Greater : 1,
                        Halt : 1,
                             : 4;
